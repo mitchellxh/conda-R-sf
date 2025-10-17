@@ -25,7 +25,7 @@ A reproducible conda environment for R with support for:
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
+git clone git@github.com:mitchellxh/conda-R-sf.git
 cd conda-R-sf
 ```
 
@@ -33,13 +33,13 @@ cd conda-R-sf
 
 **For CPU-only:**
 ```bash
-module load miniconda  # If on HPC cluster
+module load miniconda
 mamba env create -f environment-cpu.yml
 ```
 
 **For GPU support:**
 ```bash
-module load miniconda  # If on HPC cluster
+module load miniconda 
 mamba env create -f environment-gpu.yml
 ```
 
