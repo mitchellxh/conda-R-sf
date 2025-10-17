@@ -1,4 +1,4 @@
-name: rstudio-sf-mcp
+name: r-geo
 channels:
   - conda-forge
   - defaults
@@ -13,11 +13,14 @@ dependencies:
   - gxx_linux-64=12.3
   - gfortran_linux-64=12.3
 
-  # Geospatial libraries for sf package (sf compiled from source after install)
+  # Geospatial libraries with version-pinned r-sf for R 4.2 compatibility
   - gdal
   - geos
   - proj
   - udunits2
+  - r-units
+  - r-s2
+  - r-sf>=1.0_14  # Forces recent r42 build with modern proj
 
   # Deep learning
   - r-keras

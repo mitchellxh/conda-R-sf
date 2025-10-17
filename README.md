@@ -20,7 +20,7 @@ git clone git@github.com:mitchellxh/conda-R-sf.git
 cd conda-R-sf
 ```
 
-### 2. Choose Your Environment
+### 2. Choose Your Environment (5-10 minutes)
 
 **For CPU-only:**
 ```bash
@@ -34,37 +34,34 @@ module load miniconda
 mamba env create -f environment-gpu.yml
 ```
 
-> **Note:** GPU environment will automatically install compatible CUDA toolkit and cuDNN libraries.
+> **Note:** GPU environment will automatically install compatible CUDA toolkit and cuDNN libraries. But must be build on a GPU node. 
 
 ### 3. Activate the Environment
 
 ```bash
-conda activate rstudio-sf-mcp
+conda activate r-geo
 ```
 
-### 4. Install sf and Rebuild stringi (Required)
+### 4. Rebuild stringi (3-5 minutes) 
+Fixes ICU version mismatch between conda's pre-built stringi and environment ICU library, required for MCPanel. 
 
-**Install sf from source (compiles against conda geospatial libraries):**
-```bash
-R_LIBS_USER="" R --quiet --no-save -e "install.packages('sf', type='source', repos='https://cloud.r-project.org')"
-```
-
-**Rebuild stringi from source (fixes ICU version mismatch):**
 ```bash
 R_LIBS_USER="" R --quiet --no-save -e "install.packages('stringi', type='source', repos='https://cloud.r-project.org')"
 ```
 
-> ⏱️ These steps take 5-8 minutes total. sf must be compiled from source to link correctly with conda's GDAL/GEOS/PROJ libraries.
-
-### 5. Install MCPanel
+### 5. Install MCPanel (2-3 minutes)
 
 ```bash
 R_LIBS_USER="" R --quiet --no-save -e "library(devtools); install_github('susanathey/MCPanel', force=TRUE)"
 ```
 
-## Verification
+### 6. Catalog conda environment for OOD Apps
 
-Verify that all packages load correctly:
+```bash
+ycrc_conda_env.sh
+```
+
+### 7. Verify that all packages load correctly:
 
 ```bash
 R_LIBS_USER="" R --quiet --no-save -e "library(sf); library(MCPanel); library(keras); cat('✓ All packages loaded successfully\n')"
@@ -72,14 +69,8 @@ R_LIBS_USER="" R --quiet --no-save -e "library(sf); library(MCPanel); library(ke
 
 **Expected output:**
 ```
-Linking to GEOS 3.12.1, GDAL 3.9.1, PROJ 9.4.1
+Linking to GEOS 3.12.1, GDAL 3.9.1, PROJ 9.4.1; sf_use_s2() is TRUE
 ✓ All packages loaded successfully
-```
-
-### Test GPU Support (GPU version only)
-
-```bash
-R --quiet --no-save -e "library(keras); tensorflow::tf\$config\$list_physical_devices('GPU')"
 ```
 
 ## Environment Contents
@@ -90,10 +81,10 @@ R --quiet --no-save -e "library(keras); tensorflow::tf\$config\$list_physical_de
 |---------|---------|---------|
 | R | 4.2.3 | Base R environment |
 | r-sf | 1.0.16 | Spatial data handling |
-| MCPanel | 0.0 | Matrix completion for panels |
-| r-keras | - | Deep learning interface |
-| tensorflow | latest | ML framework (CPU) |
-| tensorflow-gpu | latest | ML framework (GPU) |
+| MCPanel | ? | Matrix completion for panels |
+| r-keras | 2.15.0 | Deep learning interface |
+| r-tensorflow | 2.16.0 | ML framework (CPU) |
+| tensorflow | 2.17.0 | ML framework (GPU) |
 
 ### System Libraries
 
@@ -103,8 +94,4 @@ R --quiet --no-save -e "library(keras); tensorflow::tf\$config\$list_physical_de
 | GDAL | 3.9.1 | Geospatial data abstraction |
 | GEOS | 3.12.1 | Geometry engine |
 | PROJ | 9.4.1 | Cartographic projections |
-| UDUNITS2 | - | Unit conversions |
-
-
-
-**Tested on:** RHEL 8.10, CUDA 12.9, conda 24.11.3**
+| UDUNITS2 | 2.2.28 | Unit conversions |
