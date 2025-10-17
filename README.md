@@ -5,15 +5,6 @@ A reproducible conda environment for R with support for:
 - **Econometric panel methods** (MCPanel)
 - **Deep learning** (Keras/TensorFlow with optional GPU support)
 
-### Key Features
-
-- ✅ **R 4.2.3** - Compatible with MCPanel and modern packages
-- ✅ **sf package** - Complete geospatial stack (GDAL 3.9.1, GEOS 3.12.1, PROJ 9.4.1)
-- ✅ **MCPanel** - Matrix Completion for Panel Data
-- ✅ **Keras/TensorFlow** - Deep learning with CPU or GPU support
-- ✅ **GCC 12.3** - Pinned for compatibility with legacy Eigen headers
-- ✅ **Self-contained** - No system module dependencies
-
 ## Prerequisites
 
 - **Conda/Mamba** - Package manager (Mamba recommended for faster installs)
