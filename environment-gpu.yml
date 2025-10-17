@@ -1,0 +1,21 @@
+name: rstudio-sf-mcp
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # R and core packages 4.2 for MCPanel compatibility
+  - r-base=4.2
+  - r-essentials
+  - r-devtools
+
+  # Pin GCC 12 for MCPanel Eigen compatibility
+  - gcc_linux-64=12.3
+  - gxx_linux-64=12.3
+  - gfortran_linux-64=12.3
+
+  # sf and its geospatial dependencies (auto-installed)
+  - r-sf
+
+  # deep-learning
+  - r-keras
+  - tensorflow-gpu
