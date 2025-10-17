@@ -42,15 +42,19 @@ mamba env create -f environment-gpu.yml
 conda activate rstudio-sf-mcp
 ```
 
-### 4. Fix stringi Package (Required)
+### 4. Install sf and Rebuild stringi (Required)
 
-Due to ICU library version mismatch in conda builds, reinstall stringi from source:
+**Install sf from source (compiles against conda geospatial libraries):**
+```bash
+R_LIBS_USER="" R --quiet --no-save -e "install.packages('sf', type='source', repos='https://cloud.r-project.org')"
+```
 
+**Rebuild stringi from source (fixes ICU version mismatch):**
 ```bash
 R_LIBS_USER="" R --quiet --no-save -e "install.packages('stringi', type='source', repos='https://cloud.r-project.org')"
 ```
 
-This step takes 2-3 minutes and is necessary for devtools to work correctly.
+> ⏱️ These steps take 5-8 minutes total. sf must be compiled from source to link correctly with conda's GDAL/GEOS/PROJ libraries.
 
 ### 5. Install MCPanel
 

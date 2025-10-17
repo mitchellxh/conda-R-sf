@@ -13,9 +13,12 @@ dependencies:
   - gxx_linux-64=12.3
   - gfortran_linux-64=12.3
 
-  # sf and its geospatial dependencies (auto-installed)
-  - r-sf
+  # Geospatial libraries for sf package (sf compiled from source after install)
+  - gdal
+  - geos
+  - proj
+  - udunits2
 
-  # deep-learning
+  # Deep learning
   - r-keras
   - tensorflow-gpu
