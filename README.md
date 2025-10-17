@@ -102,10 +102,5 @@ R --quiet --no-save -e "library(keras); tensorflow::tf\$config\$list_physical_de
 | UDUNITS2 | - | Unit conversions |
 
 
-```
 
-## License
-
-MIT License - See LICENSE file for details.
-
-**Tested on:** RHEL 8.10, CUDA 12.9, conda 24.11.3
+**Tested on:** RHEL 8.10, CUDA 12.9, conda 24.11.3**
